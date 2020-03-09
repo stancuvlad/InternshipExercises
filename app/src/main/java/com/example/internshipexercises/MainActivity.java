@@ -1,9 +1,11 @@
 package com.example.internshipexercises;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,32 +15,25 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private int incrementValue;
+    private int incrementValue = 0;
     private TextView label_counter;
     private TextView counter_value;
     private Button incrementButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
         initViews();
 
         label_counter.setText("Number of clicks");
-
+        counter_value.setText(String.valueOf(incrementValue));
         incrementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(incrementValue < 1){
-                    incrementValue = 0;
-                }
-                if(incrementValue >= 0){
-                    incrementValue++;
-                    counter_value.setText(incrementValue+"");
-                }
-
-
+                incrementValue++;
+                counter_value.setText(String.valueOf(incrementValue));
             }
         });
     }
@@ -53,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        int mySavedInteger = savedInstanceState.getInt("please");
-        incrementValue = mySavedInteger;
+        incrementValue = savedInstanceState.getInt("key");
+        counter_value.setText(String.valueOf(incrementValue));
     }
 
     private void initViews(){

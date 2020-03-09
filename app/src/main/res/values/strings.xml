@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">InternshipExercises</string>
+    <string name="numOfClicks">0</string>
 </resources>
