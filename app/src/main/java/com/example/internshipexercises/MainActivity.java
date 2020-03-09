@@ -39,11 +39,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putInt("key", incrementValue);
+
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        int mySavedInteger = savedInstanceState.getInt("please");
+        incrementValue = mySavedInteger;
     }
 
     private void initViews(){
