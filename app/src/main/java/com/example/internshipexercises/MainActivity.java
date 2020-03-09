@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private int incrementValue = 0;
+    private int incrementValue;
     private TextView label_counter;
     private TextView counter_value;
     private Button incrementButton;
@@ -30,8 +30,15 @@ public class MainActivity extends AppCompatActivity {
         incrementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                incrementValue++;
-                counter_value.setText(incrementValue+"");
+                if(incrementValue < 1){
+                    incrementValue = 0;
+                }
+                if(incrementValue >= 0){
+                    incrementValue++;
+                    counter_value.setText(incrementValue+"");
+                }
+
+
             }
         });
     }
